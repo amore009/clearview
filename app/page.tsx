@@ -1,65 +1,48 @@
-import Image from "next/image";
+"use client"
+import React from 'react';
+import { Hero } from "@/app/components/Hero";
+import { WhatWeDo } from "@/app/components/WhatWeDo";
+import { LeadData } from "@/app/components/LeadData";
+import { Services } from "@/app/components/Services";
+import { Projects } from "@/app/components/Projects";
+import { FAQ } from "@/app/components/FAQ";
+import { Testimonials } from "@/app/components/Testimonials";
+import { CTA } from "@/app/components/CTA";
+import { Footer } from "@/app/components/Footer";
+import { Navbar } from './components/Navbar';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Additional decorative blurs scattered through the page - kept from original App.tsx */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-600 -right-13.75 w-75 md:w-122.75 h-75 md:h-122.75 opacity-50">
+          <svg className="w-full h-full" viewBox="0 0 1193 1193" fill="none">
+            <g filter="url(#filter_blur_1)">
+              <circle cx="596.5" cy="596.5" r="245.5" fill="var(--color-brand-button)" fillOpacity="0.5" />
+            </g>
+            <defs>
+              <filter id="filter_blur_1" x="0" y="0" width="1193" height="1193" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="175.5" result="effect1_foregroundBlur" />
+              </filter>
+            </defs>
+          </svg>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </div>
+      <Navbar />
+      <main className="w-full min-h-screen bg-white pt-6">
+        <Hero />
+        <WhatWeDo />
+        <LeadData />
+        <Services />
+        <Projects />
+        <FAQ />
+        <Testimonials />
+        <CTA />
+        <Footer />
       </main>
-    </div>
+    </>
   );
 }
