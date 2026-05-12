@@ -3,6 +3,11 @@ import { NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const FROM_EMAIL =
+    process.env.RESEND_FROM_EMAIL ??
+    'Clearview Contact Form <onboarding@resend.dev>';
+const TO_EMAIL = process.env.CONTACT_RECEIVER_EMAIL;
+
 export async function POST(request: Request) {
     try {
         const { fullName, email, subject, message } = await request.json();
@@ -15,9 +20,17 @@ export async function POST(request: Request) {
             );
         }
 
+        if (!TO_EMAIL) {
+            console.error('CONTACT_RECEIVER_EMAIL is not set');
+            return NextResponse.json(
+                { error: 'Server is not configured to receive contact emails' },
+                { status: 500 }
+            );
+        }
+
         const { data, error } = await resend.emails.send({
-            from: 'Clearview Contact Form <onboarding@resend.dev>',
-            to: ['oluwasegunyinka.samuel@gmail.com'],
+            from: FROM_EMAIL,
+            to: [TO_EMAIL],
             subject: `New Contact Form Submission: ${subject}`,
             replyTo: email,
             html: `

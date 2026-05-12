@@ -20,6 +20,50 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Email (Resend)
+
+The contact form (`app/contact/page.tsx`) posts to `app/api/send/route.ts`, which uses [Resend](https://resend.com) to deliver submissions to the team inbox.
+
+### 1. Create a Resend account and API key
+
+1. Sign up at [resend.com](https://resend.com).
+2. Open **API Keys** in the dashboard and click **Create API Key**.
+3. Give it a name (e.g. `clearview-local`), choose **Sending access**, and copy the generated key — it is only shown once.
+
+### 2. Add the required environment variables
+
+Copy the template and fill in real values:
+
+```bash
+cp .env.example .env
+```
+
+The file (`.env*` is gitignored) must contain:
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `RESEND_API_KEY` | yes | API key from [resend.com/api-keys](https://resend.com/api-keys). |
+| `RESEND_FROM_EMAIL` | no | Sender shown to recipients, e.g. `Clearview Contact <contact@your-domain.com>`. Must be on a domain you've [verified in Resend](https://resend.com/docs/dashboard/domains/introduction). If unset, falls back to `onboarding@resend.dev` (testing only — see note below). |
+| `CONTACT_RECEIVER_EMAIL` | yes | Inbox that receives contact form submissions, e.g. `team@your-domain.com`. |
+
+Example `.env`:
+
+```bash
+RESEND_API_KEY=re_your_api_key_here
+RESEND_FROM_EMAIL=Clearview Contact Form <contact@your-domain.com>
+CONTACT_RECEIVER_EMAIL=you@example.com
+```
+
+Restart `npm run dev` after adding or changing env vars so Next.js picks them up. For production (Vercel, etc.), add the same variables in the hosting dashboard.
+
+### 3. Note on the testing sender
+
+`onboarding@resend.dev` is Resend's shared sender. It works without verifying a domain, but **only delivers to the email address registered on your Resend account** — perfect for local testing, not usable in production. Verify a domain and set `RESEND_FROM_EMAIL` before going live.
+
+### 4. Test it
+
+With the dev server running, submit the contact form at [http://localhost:3000/contact](http://localhost:3000/contact). You should see a `200` from `/api/send` in the terminal and the email arrive at `CONTACT_RECEIVER_EMAIL`. The route logic lives in `app/api/send/route.ts`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
