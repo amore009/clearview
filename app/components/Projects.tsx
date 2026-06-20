@@ -73,19 +73,19 @@ const animationStyles = `
 
 const projects = [
   {
-    title: "Amazon Prime",
-    description: "Lorem ipsum dolor sit amet consectetur. Tempus tristique felis vitae a. Aliquet fermentum tincidunt donec in id viverra nibh neque.",
-    image: "/projects/amazon-prime.jpg",
+    title: "Dudden Hill",
+    description: "A bold brand identity system built for a forward-thinking organisation rooted in community.",
+    image: "/projects/duddenHill/1.jpg",
   },
   {
-    title: "Nord Galaxy",
-    description: "Lorem ipsum dolor sit amet consectetur. Tempus tristique felis vitae a. Aliquet fermentum tincidunt donec in id viverra nibh neque.",
-    image: "/projects/nord-galaxy.jpg",
+    title: "Woven Aura",
+    description: "A innovative approach to sustainable fashion branding.",
+    image: "/projects/wovenAura/31.jpg",
   },
   {
-    title: "VulkanBet",
-    description: "Lorem ipsum dolor sit amet consectetur. Tempus tristique felis vitae a. Aliquet fermentum tincidunt donec in id viverra nibh neque.",
-    image: "/projects/vulkanbet.jpg",
+    title: "Premier Textiles",
+    description: "Premier Textiles is more than a fabric store. It’s a name families, fashion lovers, and tailors have come to trust.",
+    image: "/projects/premierTextiles/11.jpg",
   },
 ];
 
